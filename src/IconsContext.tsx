@@ -170,7 +170,10 @@ function iconsContext() {
   );
 
   const setActiveIcon = useCallback(
-    (icon: IconType) => dispatch({ type: 'setActiveIcon', payload: { icon } }),
+    (icon: IconType) => {
+      document.title = icon.name;
+      dispatch({ type: 'setActiveIcon', payload: { icon } })
+    },
     []
   );
 
