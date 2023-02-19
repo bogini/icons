@@ -1,0 +1,52 @@
+.context-menu-content {
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 5px;
+  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+}
+
+.context-menu-item {
+  font-size: 13px;
+  line-height: 1;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 20px 0 10px;
+  position: relative;
+  user-select: none;
+  outline: none;
+  display: flex;
+  column-gap: 14px;
+}
+
+.context-menu-item-icon {
+  width: 10px;
+}
+
+.context-menu-item-indicator {
+  position: absolute;
+  left: 0;
+  width: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.context-menu-item[data-highlighted] {
+  background-color: #B4D5FE;
+  cursor: pointer;
+}
+
+.context-menu-item[data-disabled] {
+  color: lightgray;
+  /* pointer-events: 'none'; */
+}
+
+.context-menu-separator {
+  height: 1px;
+  background-color: lightgray;
+  margin: 5px;
+}
