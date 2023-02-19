@@ -1,5 +1,5 @@
 import IconPage from './IconPage';
-import { IconsProvider, useIcons } from './IconsContext';
+import { useIcons } from './IconsContext';
 import './App.css';
 
 function App() {
