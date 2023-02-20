@@ -30,7 +30,7 @@ export default function Icon({ id, name, color }: IconType) {
   const { icons, setIcons, setActiveIcon } = useIcons();
   const iconIndex = icons.findIndex(icon => icon.id === id);
 
-  const { attributes, listeners, setNodeRef, transform, transition, index } =
+  const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: id });
 
   const style = {

@@ -2,7 +2,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useReducer,
 } from 'react';
 import Chance from 'chance';
@@ -130,7 +129,7 @@ function iconReducer(state: State, action: Action): State {
 
 const NUMBER_INITIAL_COLORS = Math.floor(3 + Math.random() * 12);
 
-function iconsContext() {
+function IconsContextValue() {
   const colors = randomColors(NUMBER_INITIAL_COLORS);
   const [state, dispatch] = useReducer(iconReducer, {
     icons: Array(NUMBER_INITIAL_COLORS)
@@ -186,17 +185,19 @@ function iconsContext() {
   };
 }
 
-const IconsContext = createContext<ReturnType<typeof iconsContext> | undefined>(
+const IconsContext = createContext<ReturnType<typeof IconsContextValue> | undefined>(
   undefined
 );
 
 export function useIcons() {
+  // Non null assertion since IconsContextValue() is always set
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return useContext(IconsContext)!;
 }
 
 export const IconsProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <IconsContext.Provider value={iconsContext()!}>
+    <IconsContext.Provider value={IconsContextValue()}>
       {children}
     </IconsContext.Provider>
   );

@@ -5,7 +5,6 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
-  DragEndEvent,
 } from '@dnd-kit/core';
 import {
   arrayMove,
@@ -19,6 +18,7 @@ import Icon, { IconNew } from './Icon';
 import './IconPage.css';
 import { useIcons } from './IconsContext';
 import { type IconType } from './IconsContext';
+import { type DragEndEvent } from '@dnd-kit/core';
 
 // Uses dnd kit's Sortable: docs.dndkit.com/presets/sortable
 function IconPage() {

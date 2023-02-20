@@ -5,7 +5,7 @@ import './ContextMenu.css';
 type ContextMenuItem = {
   label: string;
   icon: React.ReactNode;
-  handleSelect: () => any;
+  handleSelect: () => unknown;
 };
 
 type ContextMenuProps = {
