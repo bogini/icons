@@ -8,5 +8,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <IconsProvider>
       <App />
     </IconsProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

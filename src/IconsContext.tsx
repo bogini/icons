@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useReducer,
-} from 'react';
+import { createContext, useCallback, useContext, useReducer } from 'react';
 import Chance from 'chance';
 
 import {
@@ -108,9 +103,7 @@ function iconReducer(state: State, action: Action): State {
     case 'delete':
       return {
         ...state,
-        icons: state.icons.filter(
-          (icon: IconType) => icon.id !== action.payload.id
-        ),
+        icons: state.icons.filter((icon: IconType) => icon.id !== action.payload.id),
       };
     case 'setIcons':
       return {
@@ -158,23 +151,14 @@ function IconsContextValue() {
   */
 
   // The following callbacks would handle talking to a server to update state
-  const setIcons = useCallback(
-    (icons: IconType[]) => dispatch({ type: 'setIcons', payload: { icons } }),
-    []
-  );
+  const setIcons = useCallback((icons: IconType[]) => dispatch({ type: 'setIcons', payload: { icons } }), []);
 
-  const addIcon = useCallback(
-    (name: string) => dispatch({ type: 'add', payload: { name } }),
-    []
-  );
+  const addIcon = useCallback((name: string) => dispatch({ type: 'add', payload: { name } }), []);
 
-  const setActiveIcon = useCallback(
-    (icon: IconType) => {
-      document.title = icon.name;
-      dispatch({ type: 'setActiveIcon', payload: { icon } })
-    },
-    []
-  );
+  const setActiveIcon = useCallback((icon: IconType) => {
+    document.title = icon.name;
+    dispatch({ type: 'setActiveIcon', payload: { icon } });
+  }, []);
 
   return {
     icons: state.icons,
@@ -185,9 +169,7 @@ function IconsContextValue() {
   };
 }
 
-const IconsContext = createContext<ReturnType<typeof IconsContextValue> | undefined>(
-  undefined
-);
+const IconsContext = createContext<ReturnType<typeof IconsContextValue> | undefined>(undefined);
 
 export function useIcons() {
   // Non null assertion since IconsContextValue() is always set
@@ -196,9 +178,5 @@ export function useIcons() {
 }
 
 export const IconsProvider = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <IconsContext.Provider value={IconsContextValue()}>
-      {children}
-    </IconsContext.Provider>
-  );
+  return <IconsContext.Provider value={IconsContextValue()}>{children}</IconsContext.Provider>;
 };

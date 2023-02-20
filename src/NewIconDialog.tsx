@@ -7,11 +7,7 @@ import './NewIconDialog.css';
 
 // Wraps Radix UI's Dialog: https://www.radix-ui.com/docs/primitives/components/dialog
 // Custom styling defined in NewIconDialog.css
-export default function NewIconDialog({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function NewIconDialog({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const { addIcon } = useIcons();
@@ -27,7 +23,7 @@ export default function NewIconDialog({
             Choose your icon name and click Add when done.
           </Dialog.Description>
           <form
-            onSubmit={event => {
+            onSubmit={(event) => {
               if (name.length) {
                 addIcon(name);
                 setOpen(false);
@@ -45,7 +41,7 @@ export default function NewIconDialog({
                 id="name"
                 placeholder="My Icon"
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
             </fieldset>
             <div

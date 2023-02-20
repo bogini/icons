@@ -1,11 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import {
-  TrashIcon,
-  PinLeftIcon,
-  PinRightIcon,
-  PlusIcon,
-} from '@radix-ui/react-icons';
+import { TrashIcon, PinLeftIcon, PinRightIcon, PlusIcon } from '@radix-ui/react-icons';
 import ContextMenu from './ContextMenu';
 import { IconType, useIcons } from './IconsContext';
 
@@ -28,14 +23,20 @@ export function IconNew() {
 // Uses dnd kit's Sortable: https://docs.dndkit.com/presets/sortable
 export default function Icon({ id, name, color }: IconType) {
   const { icons, setIcons, setActiveIcon } = useIcons();
-  const iconIndex = icons.findIndex(icon => icon.id === id);
+  const iconIndex = icons.findIndex((icon) => icon.id === id);
 
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: id });
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+  };
+
+  const handleClick = () => setActiveIcon(icons[iconIndex]);
+  const handleKeyDown = ({ key }: React.KeyboardEvent) => {
+    if (key === 'Enter') {
+      handleClick();
+    }
   };
 
   return (
@@ -68,7 +69,7 @@ export default function Icon({ id, name, color }: IconType) {
           },
         ]}
       >
-        <div className="icon" onClick={() => setActiveIcon(icons[iconIndex])}>
+        <div className="icon" role="button" tabIndex={iconIndex} onClick={handleClick} onKeyDown={handleKeyDown}>
           <div className="image" style={{ backgroundColor: color }}></div>
           <div className="name">{name}</div>
         </div>
